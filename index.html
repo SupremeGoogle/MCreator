@@ -20,6 +20,8 @@
     h1 { position:relative; z-index:1; max-width:760px; margin:0; font-size:clamp(40px,7vw,82px); line-height:.98; text-transform:uppercase; letter-spacing:0; text-wrap:balance; }
     h1::after { content:""; display:block; width:min(330px,70%); height:10px; margin-top:16px; background:linear-gradient(90deg,var(--cyan),var(--green),var(--yellow),var(--red)); border-radius:999px; background-size:220% 100%; animation:stripe 5s linear infinite; }
     .lead { position:relative; z-index:1; max-width:680px; margin:0; padding:16px 18px; background:rgba(255,255,255,.78); border:2px solid rgba(0,0,0,.12); border-radius:8px; font-size:clamp(18px,2vw,24px); font-weight:800; line-height:1.45; }
+    .important-button { position:relative; z-index:1; width:max-content; max-width:100%; padding:14px 18px; background:var(--red); color:#fff; border:3px solid #fff; border-radius:8px; box-shadow:7px 8px 0 var(--yellow),0 16px 28px rgba(0,0,0,.16); font:inherit; font-size:clamp(16px,1.8vw,20px); font-weight:900; cursor:pointer; transition:transform 180ms ease,box-shadow 180ms ease,background 180ms ease; }
+    .important-button:hover { transform:translateY(-3px); background:var(--ink); box-shadow:10px 11px 0 var(--yellow),0 18px 34px rgba(0,0,0,.2); }
     .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:28px; }
     .card { position:relative; min-height:220px; display:flex; flex-direction:column; justify-content:space-between; gap:18px; padding:22px; background:linear-gradient(#fffdf6,#fffdf6) padding-box,linear-gradient(135deg,var(--cyan),var(--yellow),var(--red)) border-box; border:3px solid transparent; border-radius:8px; color:var(--ink); text-decoration:none; box-shadow:10px 12px 0 rgba(21,21,21,.12); transition:transform 180ms ease,box-shadow 180ms ease,filter 180ms ease; animation:rise linear both; animation-timeline:view(); animation-range:entry 0% cover 28%; overflow:hidden; }
     .card::before { content:""; position:absolute; top:14px; right:14px; width:54px; height:54px; border-radius:50%; background:var(--ink); box-shadow:inset 0 0 0 8px var(--yellow); opacity:.12; }
@@ -31,6 +33,14 @@
     .soon { opacity:.72; filter:grayscale(.25); }
     .soon .action { background:#777; box-shadow:5px 6px 0 #ddd; }
     .instruction { background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,var(--violet),var(--cyan),var(--yellow)) border-box; }
+    dialog { width:min(680px,calc(100% - 28px)); padding:0; border:0; border-radius:8px; background:transparent; color:var(--ink); }
+    dialog::backdrop { background:rgba(0,0,0,.58); backdrop-filter:blur(4px); }
+    .modal-card { position:relative; padding:clamp(22px,4vw,34px); background:var(--paper); border:5px solid #fff; border-radius:8px; box-shadow:10px 12px 0 #151515,0 26px 70px rgba(0,0,0,.28); }
+    .modal-card::before { content:"!"; position:absolute; top:-24px; right:24px; width:62px; height:62px; display:grid; place-items:center; background:var(--red); color:#fff; border:4px solid #fff; border-radius:50%; font-size:38px; font-weight:900; box-shadow:0 10px 0 rgba(0,0,0,.16); }
+    .modal-card h2 { margin:0 0 14px; font-size:clamp(28px,4vw,44px); line-height:1.05; text-transform:uppercase; }
+    .modal-card p { margin:0 0 14px; font-size:clamp(17px,2vw,21px); line-height:1.5; color:#2d2d2d; }
+    .modal-actions { display:flex; justify-content:flex-end; margin-top:20px; }
+    .modal-close { padding:12px 16px; background:var(--ink); color:#fff; border:3px solid #fff; border-radius:8px; box-shadow:6px 7px 0 var(--yellow); font:inherit; font-weight:900; cursor:pointer; }
     @keyframes bgMove { from{background-position:0 0,0 0,0 0,0 0,0 0} to{background-position:34px 34px,-34px 34px,0 0,0 0,0 0} }
     @keyframes dots { from{transform:translate3d(0,0,0)} to{transform:translate3d(72px,72px,0)} }
     @keyframes pulse { 0%,100%{transform:translateY(0) rotate(-4deg) scale(1)} 50%{transform:translateY(-8px) rotate(4deg) scale(1.04)} }
@@ -47,8 +57,15 @@
       <p class="tag">MCreator / Minecraft Mods</p>
       <h1>Курс по созданию модов</h1>
       <p class="lead">Выберите урок или откройте инструкцию по подготовке. Новые уроки можно будет добавить сюда в том же стиле.</p>
+      <button class="important-button" type="button" onclick="importantModal.showModal()">Важное замечание</button>
     </header>
     <main class="grid">
+      <a class="card instruction" href="instruction/">
+        <small>Инструкция</small>
+        <h2>WARP и запуск MCreator</h2>
+        <p>Настройка AmneziaVPN/WARP для скачивания и запуска.</p>
+        <span class="action">Открыть инструкцию</span>
+      </a>
       <a class="card" href="lesson1/">
         <small>Урок 1</small>
         <h2>Создание своего портала</h2>
@@ -60,12 +77,6 @@
         <h2>Портал, броня и оружие</h2>
         <p>Измерение, настройки мира, эффекты, броня и оружие.</p>
         <span class="action">Открыть урок</span>
-      </a>
-      <a class="card instruction" href="instruction/">
-        <small>Инструкция</small>
-        <h2>WARP и запуск MCreator</h2>
-        <p>Настройка AmneziaVPN/WARP для скачивания и запуска.</p>
-        <span class="action">Открыть инструкцию</span>
       </a>
       <div class="card soon">
         <small>Урок 3</small>
@@ -87,5 +98,16 @@
       </div>
     </main>
   </div>
+  <dialog id="importantModal">
+    <div class="modal-card">
+      <h2>Важное замечание</h2>
+      <p>Некоторые ребята уже проходили модуль по модам Minecraft, поэтому важно сразу объяснить: мы не будем просто повторять всё то же самое.</p>
+      <p>В этом курсе мы будем создавать свои процедуры, модификации, порталы и использовать новые возможности MCreator. Да, отдельные моменты могут повторяться, но это хорошая возможность проявить себя, быстрее разобраться в инструментах, помогать другим ребятам и брать дополнительные задания.</p>
+      <p>Если ученик уже знаком с базой, его задача — не скучать, а прокачать проект глубже: улучшать идеи, экспериментировать с настройками и помогать команде двигаться увереннее.</p>
+      <form class="modal-actions" method="dialog">
+        <button class="modal-close">Понятно</button>
+      </form>
+    </div>
+  </dialog>
 </body>
 </html>
