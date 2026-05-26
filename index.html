@@ -199,6 +199,46 @@
       animation: slideUp 680ms 280ms cubic-bezier(.2, .8, .2, 1) both;
     }
 
+    .download-conspect {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      padding: 14px 20px;
+      background: var(--ink);
+      color: var(--white);
+      border: 3px solid var(--white);
+      border-radius: 8px;
+      box-shadow: 7px 8px 0 var(--yellow), 0 16px 28px rgba(0, 0, 0, 0.16);
+      font-size: clamp(16px, 1.8vw, 20px);
+      font-weight: 900;
+      text-decoration: none;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      animation: slideUp 680ms 360ms cubic-bezier(.2, .8, .2, 1) both;
+    }
+
+    .download-conspect::before {
+      content: "↓";
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      background: var(--yellow);
+      color: var(--ink);
+      border-radius: 50%;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .download-conspect:hover {
+      background: var(--red);
+      color: var(--white);
+      transform: translateY(-3px);
+      box-shadow: 10px 11px 0 var(--yellow), 0 18px 34px rgba(0, 0, 0, 0.2);
+    }
+
     main {
       position: relative;
       padding: clamp(18px, 3vw, 36px);
@@ -465,7 +505,7 @@
       <p class="lesson-label">Урок 1</p>
       <h1>Моды Майнкрафт. Создание своего портала</h1>
       <p class="goal">Цель урока: Ознакомиться с интерфейсом программы, создать свои первые блоки. Создать блоки для портала</p>
-        <button class="theme-toggle" id="themeToggle">Toggle Theme</button>
+      <a class="download-conspect" href="Урок%201.docx" download>Скачать полный конспект</a>
     </header>
     <main>
       <h2>Теория</h2>
@@ -869,6 +909,5 @@
       <div class="gap"></div>
     </main>
   </div>
-    <script src="theme-toggle.js"></script>
-  </body>
+</body>
 </html>
