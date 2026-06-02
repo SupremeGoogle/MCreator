@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Урок 5 - Minecraft Education Quest</title>
+  <style>
+    :root { --yellow:#ffd21f; --sun:#ffb800; --ink:#151515; --paper:#fffdf6; --white:#fff; --cyan:#00a6df; --red:#e53935; --green:#2fbf71; --violet:#7b4cff; --shadow:10px 12px 0 #151515; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; min-width:320px; color:var(--ink); font-family:Arial,Helvetica,sans-serif; line-height:1.6; overflow-x:hidden; background:linear-gradient(90deg,rgba(255,255,255,.18) 1px,transparent 1px),linear-gradient(180deg,rgba(255,255,255,.16) 1px,transparent 1px),radial-gradient(circle at 12% 10%,rgba(255,255,255,.94) 0 2px,transparent 3px),radial-gradient(circle at 90% 14%,rgba(0,166,223,.22),transparent 28%),linear-gradient(135deg,#ffd21f 0%,#ffb800 42%,#c7f2ff 100%); background-size:34px 34px,34px 34px,auto,auto,auto; animation:pageGlow 12s ease-in-out infinite alternate; }
+    body::before { content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.55; background-image:radial-gradient(#151515 0 3px,transparent 4px),radial-gradient(#fff 0 3px,transparent 4px); background-position:0 0,12px 12px; background-size:72px 72px; mask-image:linear-gradient(130deg,transparent 0 18%,#000 34%,transparent 70%); animation:dotsMove 26s linear infinite; }
+    .page { width:min(1060px,calc(100% - 28px)); margin:0 auto; padding:30px 0 58px; }
+    header { position:relative; overflow:hidden; margin-bottom:22px; min-height:420px; padding:clamp(24px,5vw,52px); background:linear-gradient(105deg,rgba(255,253,246,.98) 0 58%,rgba(255,253,246,.58) 58% 100%),linear-gradient(135deg,#fff8c8,#ffd21f); border:5px solid var(--white); border-radius:8px; box-shadow:var(--shadow),0 26px 70px rgba(0,0,0,.18); isolation:isolate; animation:heroIn 760ms cubic-bezier(.2,.8,.2,1) both; }
+    header::before { content:""; position:absolute; inset:18px; border:2px solid rgba(255,255,255,.8); border-radius:8px; pointer-events:none; }
+    header::after { content:"QUEST"; position:absolute; right:clamp(24px,6vw,72px); bottom:clamp(24px,5vw,58px); width:126px; height:126px; display:grid; place-items:center; background:var(--ink); color:var(--yellow); border:4px solid var(--white); border-radius:50%; font-size:22px; font-weight:900; box-shadow:0 14px 0 rgba(0,0,0,.16); animation:badgePulse 2.8s ease-in-out infinite; }
+    .brand { position:relative; z-index:1; display:inline-block; margin-bottom:18px; padding:8px 14px; background:var(--white); border:2px solid #d8d8d8; border-radius:4px; font-size:30px; font-weight:900; line-height:1; box-shadow:0 10px 22px rgba(0,0,0,.16); transform:rotate(-1deg); animation:popIn 520ms 120ms cubic-bezier(.2,.8,.2,1) both; }
+    .brand span:nth-child(1){color:#00a6df}.brand span:nth-child(2){color:#f6a800}.brand span:nth-child(3){color:#5f6368}.brand span:nth-child(4){color:#e53935}
+    .lesson-label { position:relative; z-index:1; display:inline-block; margin:0 0 10px; padding:6px 12px; background:var(--ink); color:var(--white); border-radius:4px; font-weight:700; box-shadow:5px 5px 0 rgba(0,0,0,.16); }
+    h1 { position:relative; z-index:1; max-width:720px; margin:0 0 14px; font-size:clamp(36px,6vw,68px); line-height:1; letter-spacing:0; text-transform:uppercase; text-wrap:balance; animation:slideUp 680ms 180ms cubic-bezier(.2,.8,.2,1) both; }
+    h1::after { content:""; display:block; width:min(280px,62%); height:10px; margin-top:14px; background:linear-gradient(90deg,var(--cyan),var(--green),var(--yellow),var(--red)); border-radius:999px; box-shadow:0 8px 18px rgba(0,0,0,.14); animation:stripe 5s linear infinite; background-size:220% 100%; }
+    .goal { position:relative; z-index:1; max-width:700px; margin:0; padding:16px 18px; background:rgba(255,255,255,.8); border:2px solid rgba(0,0,0,.12); border-radius:8px; font-size:clamp(18px,2vw,24px); font-weight:700; backdrop-filter:blur(6px); animation:slideUp 680ms 280ms cubic-bezier(.2,.8,.2,1) both; }
+    .download-row { position:relative; z-index:1; display:flex; flex-wrap:wrap; gap:12px; margin-top:20px; }
+    .download-conspect { display:inline-flex; align-items:center; gap:10px; padding:14px 20px; background:var(--ink); color:var(--white); border:3px solid var(--white); border-radius:8px; box-shadow:7px 8px 0 var(--yellow),0 16px 28px rgba(0,0,0,.16); font-size:clamp(16px,1.8vw,20px); font-weight:900; text-decoration:none; transition:transform 180ms ease,box-shadow 180ms ease,background 180ms ease; animation:slideUp 680ms 360ms cubic-bezier(.2,.8,.2,1) both; }
+    .download-conspect::before { content:"↓"; display:grid; place-items:center; width:28px; height:28px; flex:0 0 28px; background:var(--yellow); color:var(--ink); border-radius:50%; font-size:20px; line-height:1; }
+    .download-conspect:hover { background:var(--red); color:var(--white); transform:translateY(-3px); box-shadow:10px 11px 0 var(--yellow),0 18px 34px rgba(0,0,0,.2); }
+    main { position:relative; padding:clamp(18px,3vw,36px); background:linear-gradient(#fffdf6,#fffdf6) padding-box,linear-gradient(135deg,var(--cyan),var(--yellow),var(--red),var(--violet)) border-box; border:4px solid transparent; border-radius:8px; box-shadow:0 18px 45px rgba(0,0,0,.15); animation:mainIn 700ms 180ms ease both; }
+    main::before { content:""; position:sticky; top:0; display:block; height:6px; margin:calc(clamp(18px,3vw,36px) * -1) calc(clamp(18px,3vw,36px) * -1) 26px; background:linear-gradient(90deg,var(--cyan),var(--green),var(--yellow),var(--red),var(--violet)); background-size:240% 100%; border-radius:4px 4px 0 0; animation:stripe 5s linear infinite; z-index:2; }
+    h2 { position:relative; margin:0 0 18px; padding:10px 16px 10px 48px; display:inline-block; background:var(--ink); color:var(--white); border-radius:4px; font-size:clamp(26px,4vw,42px); line-height:1.1; box-shadow:7px 7px 0 var(--yellow); }
+    h2::before { content:""; position:absolute; left:16px; top:50%; width:18px; height:18px; background:var(--yellow); border-radius:4px; transform:translateY(-50%) rotate(45deg); box-shadow:0 0 0 4px rgba(255,210,31,.22); }
+    .notice-inline { max-width:940px; margin:0 0 24px; padding:18px 20px; background:#fff; border:3px solid var(--ink); border-radius:8px; box-shadow:8px 9px 0 rgba(21,21,21,.12); font-size:clamp(17px,1.8vw,21px); font-weight:700; }
+    .pdf-shell { position:relative; width:100%; min-height:82vh; padding:12px; background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,var(--cyan),var(--yellow) 45%,var(--red)) border-box; border:3px solid transparent; border-radius:8px; box-shadow:12px 14px 0 rgba(21,21,21,.12); }
+    .pdf-viewer { display:block; width:100%; height:82vh; min-height:680px; border:1px solid rgba(0,0,0,.14); border-radius:6px; background:#f4f4f4; }
+    dialog { width:min(740px,calc(100% - 28px)); padding:0; border:0; border-radius:8px; background:transparent; color:var(--ink); }
+    dialog::backdrop { background:rgba(0,0,0,.58); backdrop-filter:blur(4px); }
+    .modal-card { position:relative; padding:clamp(22px,4vw,34px); background:var(--paper); border:5px solid #fff; border-radius:8px; box-shadow:10px 12px 0 #151515,0 26px 70px rgba(0,0,0,.28); }
+    .modal-card::before { content:"!"; position:absolute; top:-24px; right:24px; width:62px; height:62px; display:grid; place-items:center; background:var(--red); color:#fff; border:4px solid #fff; border-radius:50%; font-size:38px; font-weight:900; box-shadow:0 10px 0 rgba(0,0,0,.16); }
+    .modal-card h2 { margin:0 0 14px; font-size:clamp(28px,4vw,44px); line-height:1.05; text-transform:uppercase; }
+    .modal-card p { margin:0 0 14px; font-size:clamp(17px,2vw,21px); line-height:1.5; color:#2d2d2d; }
+    .modal-actions { display:flex; justify-content:flex-end; margin-top:20px; }
+    .modal-close { padding:12px 16px; background:var(--ink); color:#fff; border:3px solid #fff; border-radius:8px; box-shadow:6px 7px 0 var(--yellow); font:inherit; font-weight:900; cursor:pointer; }
+    @keyframes pageGlow { from{background-position:0 0,0 0,0 0,0 0,0 0} to{background-position:34px 34px,-34px 34px,0 0,0 0,0 0} }
+    @keyframes dotsMove { from{transform:translate3d(0,0,0)} to{transform:translate3d(72px,72px,0)} }
+    @keyframes heroIn { from{opacity:0;transform:translateY(24px) scale(.985)} to{opacity:1;transform:translateY(0) scale(1)} }
+    @keyframes mainIn { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes popIn { from{opacity:0;transform:translateY(-10px) rotate(-4deg) scale(.92)} to{opacity:1;transform:translateY(0) rotate(-1deg) scale(1)} }
+    @keyframes slideUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes badgePulse { 0%,100%{transform:translateY(0) rotate(-4deg) scale(1)} 50%{transform:translateY(-8px) rotate(4deg) scale(1.04)} }
+    @keyframes stripe { from{background-position:0% 50%} to{background-position:220% 50%} }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:1ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:1ms!important; } }
+    @media (max-width:640px) { .page{width:min(100% - 16px,1060px);padding-top:10px} header{min-height:500px;padding:20px;box-shadow:7px 8px 0 #151515} header::after{width:82px;height:82px;right:18px;bottom:18px;font-size:15px} h1{font-size:clamp(34px,12vw,54px)} main{padding:16px} .download-conspect{width:100%;justify-content:flex-start} .pdf-shell{padding:8px;min-height:76vh} .pdf-viewer{height:76vh;min-height:560px} }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand"><span>K</span><span>I</span><span>BER</span><span>ONE</span></div>
+      <p class="lesson-label">Урок 5</p>
+      <h1>Minecraft Education Quest</h1>
+      <p class="goal">Последний урок по Minecraft Education: квест в обучающем мире и конспект для прохождения.</p>
+      <div class="download-row">
+        <a class="download-conspect" href="%D0%A3%D1%80%D0%BE%D0%BA5.pdf" download>Скачать полный конспект PDF</a>
+      </div>
+    </header>
+
+    <main>
+      <h2>Конспект урока</h2>
+      <p class="notice-inline">Ребятки, нового урока не будет, у УК есть интересный последний урок по Майнкрафт Едюкейшн, где нужно проходить квест, прикреплю конспект ниже. Сама карта она устанавливается по дефолту (обучающий мир), если вы установили Майнкрафт через Доп Файлы 4го урока</p>
+      <div class="pdf-shell">
+        <object class="pdf-viewer" data="%D0%A3%D1%80%D0%BE%D0%BA5.pdf#toolbar=1&navpanes=0&view=FitH" type="application/pdf">
+          <iframe class="pdf-viewer" src="%D0%A3%D1%80%D0%BE%D0%BA5.pdf#toolbar=1&navpanes=0&view=FitH" title="Урок 5 PDF"></iframe>
+        </object>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="lessonNotice">
+    <div class="modal-card">
+      <h2>Важно</h2>
+      <p>Ребятки, нового урока не будет, у УК есть интересный последний урок по Майнкрафт Едюкейшн, где нужно проходить квест, прикреплю конспект ниже. Сама карта она устанавливается по дефолту (обучающий мир), если вы установили Майнкрафт через Доп Файлы 4го урока</p>
+      <form class="modal-actions" method="dialog">
+        <button class="modal-close">Понятно</button>
+      </form>
+    </div>
+  </dialog>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const notice = document.getElementById('lessonNotice');
+      const message = 'Ребятки, нового урока не будет, у УК есть интересный последний урок по Майнкрафт Едюкейшн, где нужно проходить квест, прикреплю конспект ниже. Сама карта она устанавливается по дефолту (обучающий мир), если вы установили Майнкрафт через Доп Файлы 4го урока';
+      if (notice && typeof notice.showModal === 'function') {
+        notice.showModal();
+      } else {
+        alert(message);
+      }
+    });
+  </script>
+</body>
+</html>
