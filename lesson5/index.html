@@ -29,8 +29,10 @@
     h2 { position:relative; margin:0 0 18px; padding:10px 16px 10px 48px; display:inline-block; background:var(--ink); color:var(--white); border-radius:4px; font-size:clamp(26px,4vw,42px); line-height:1.1; box-shadow:7px 7px 0 var(--yellow); }
     h2::before { content:""; position:absolute; left:16px; top:50%; width:18px; height:18px; background:var(--yellow); border-radius:4px; transform:translateY(-50%) rotate(45deg); box-shadow:0 0 0 4px rgba(255,210,31,.22); }
     .notice-inline { max-width:940px; margin:0 0 24px; padding:18px 20px; background:#fff; border:3px solid var(--ink); border-radius:8px; box-shadow:8px 9px 0 rgba(21,21,21,.12); font-size:clamp(17px,1.8vw,21px); font-weight:700; }
-    .pdf-shell { position:relative; width:100%; min-height:82vh; padding:12px; background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,var(--cyan),var(--yellow) 45%,var(--red)) border-box; border:3px solid transparent; border-radius:8px; box-shadow:12px 14px 0 rgba(21,21,21,.12); }
-    .pdf-viewer { display:block; width:100%; height:82vh; min-height:680px; border:1px solid rgba(0,0,0,.14); border-radius:6px; background:#f4f4f4; }
+    .pdf-pages { display:grid; gap:26px; width:100%; }
+    .pdf-page { position:relative; width:100%; margin:0; padding:clamp(8px,1.5vw,14px); background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,var(--cyan),var(--yellow) 45%,var(--red)) border-box; border:3px solid transparent; border-radius:8px; box-shadow:12px 14px 0 rgba(21,21,21,.12); }
+    .pdf-page::before { content:""; position:absolute; top:12px; left:14px; width:42px; height:12px; background:radial-gradient(circle,#ff5f57 0 5px,transparent 6px),radial-gradient(circle,#ffbd2e 0 5px,transparent 6px),radial-gradient(circle,#28c840 0 5px,transparent 6px); background-position:0 0,15px 0,30px 0; background-size:12px 12px; background-repeat:no-repeat; z-index:1; }
+    .pdf-page img { display:block; width:100%; height:auto; margin-top:20px; border:1px solid rgba(0,0,0,.14); border-radius:6px; background:#f4f4f4; }
     dialog { width:min(740px,calc(100% - 28px)); padding:0; border:0; border-radius:8px; background:transparent; color:var(--ink); }
     dialog::backdrop { background:rgba(0,0,0,.58); backdrop-filter:blur(4px); }
     .modal-card { position:relative; padding:clamp(22px,4vw,34px); background:var(--paper); border:5px solid #fff; border-radius:8px; box-shadow:10px 12px 0 #151515,0 26px 70px rgba(0,0,0,.28); }
@@ -48,7 +50,7 @@
     @keyframes badgePulse { 0%,100%{transform:translateY(0) rotate(-4deg) scale(1)} 50%{transform:translateY(-8px) rotate(4deg) scale(1.04)} }
     @keyframes stripe { from{background-position:0% 50%} to{background-position:220% 50%} }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:1ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:1ms!important; } }
-    @media (max-width:640px) { .page{width:min(100% - 16px,1060px);padding-top:10px} header{min-height:500px;padding:20px;box-shadow:7px 8px 0 #151515} header::after{width:82px;height:82px;right:18px;bottom:18px;font-size:15px} h1{font-size:clamp(34px,12vw,54px)} main{padding:16px} .download-conspect{width:100%;justify-content:flex-start} .pdf-shell{padding:8px;min-height:76vh} .pdf-viewer{height:76vh;min-height:560px} }
+    @media (max-width:640px) { .page{width:min(100% - 16px,1060px);padding-top:10px} header{min-height:500px;padding:20px;box-shadow:7px 8px 0 #151515} header::after{width:82px;height:82px;right:18px;bottom:18px;font-size:15px} h1{font-size:clamp(34px,12vw,54px)} main{padding:16px} .download-conspect{width:100%;justify-content:flex-start} .pdf-pages{gap:18px} .pdf-page{padding:8px;box-shadow:7px 8px 0 rgba(21,21,21,.12)} }
   </style>
 </head>
 <body>
@@ -66,10 +68,40 @@
     <main>
       <h2>Конспект урока</h2>
       <p class="notice-inline">Ребятки, нового урока не будет, у УК есть интересный последний урок по Майнкрафт Едюкейшн, где нужно проходить квест, прикреплю конспект ниже. Сама карта она устанавливается по дефолту (обучающий мир), если вы установили Майнкрафт через Доп Файлы 4го урока</p>
-      <div class="pdf-shell">
-        <object class="pdf-viewer" data="%D0%A3%D1%80%D0%BE%D0%BA5.pdf#toolbar=1&navpanes=0&view=FitH" type="application/pdf">
-          <iframe class="pdf-viewer" src="%D0%A3%D1%80%D0%BE%D0%BA5.pdf#toolbar=1&navpanes=0&view=FitH" title="Урок 5 PDF"></iframe>
-        </object>
+      <div class="pdf-pages">
+        <figure class="pdf-page"><img src="pages/page-01.jpg" alt="Урок 5, страница 1" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-02.jpg" alt="Урок 5, страница 2" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-03.jpg" alt="Урок 5, страница 3" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-04.jpg" alt="Урок 5, страница 4" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-05.jpg" alt="Урок 5, страница 5" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-06.jpg" alt="Урок 5, страница 6" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-07.jpg" alt="Урок 5, страница 7" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-08.jpg" alt="Урок 5, страница 8" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-09.jpg" alt="Урок 5, страница 9" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-10.jpg" alt="Урок 5, страница 10" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-11.jpg" alt="Урок 5, страница 11" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-12.jpg" alt="Урок 5, страница 12" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-13.jpg" alt="Урок 5, страница 13" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-14.jpg" alt="Урок 5, страница 14" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-15.jpg" alt="Урок 5, страница 15" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-16.jpg" alt="Урок 5, страница 16" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-17.jpg" alt="Урок 5, страница 17" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-18.jpg" alt="Урок 5, страница 18" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-19.jpg" alt="Урок 5, страница 19" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-20.jpg" alt="Урок 5, страница 20" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-21.jpg" alt="Урок 5, страница 21" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-22.jpg" alt="Урок 5, страница 22" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-23.jpg" alt="Урок 5, страница 23" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-24.jpg" alt="Урок 5, страница 24" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-25.jpg" alt="Урок 5, страница 25" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-26.jpg" alt="Урок 5, страница 26" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-27.jpg" alt="Урок 5, страница 27" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-28.jpg" alt="Урок 5, страница 28" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-29.jpg" alt="Урок 5, страница 29" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-30.jpg" alt="Урок 5, страница 30" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-31.jpg" alt="Урок 5, страница 31" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-32.jpg" alt="Урок 5, страница 32" loading="lazy"></figure>
+        <figure class="pdf-page"><img src="pages/page-33.jpg" alt="Урок 5, страница 33" loading="lazy"></figure>
       </div>
     </main>
   </div>
