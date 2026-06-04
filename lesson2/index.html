@@ -24,6 +24,13 @@
     .download-conspect { position:relative; z-index:1; display:inline-flex; align-items:center; gap:10px; margin-top:20px; padding:14px 20px; background:var(--ink); color:var(--white); border:3px solid var(--white); border-radius:8px; box-shadow:7px 8px 0 var(--yellow),0 16px 28px rgba(0,0,0,.16); font-size:clamp(16px,1.8vw,20px); font-weight:900; text-decoration:none; transition:transform 180ms ease,box-shadow 180ms ease,background 180ms ease; animation:slideUp 680ms 360ms cubic-bezier(.2,.8,.2,1) both; }
     .download-conspect::before { content:"↓"; display:grid; place-items:center; width:28px; height:28px; background:var(--yellow); color:var(--ink); border-radius:50%; font-size:20px; line-height:1; }
     .download-conspect:hover { background:var(--red); color:var(--white); transform:translateY(-3px); box-shadow:10px 11px 0 var(--yellow),0 18px 34px rgba(0,0,0,.2); }
+
+    .speech-intro { position:relative; margin:0 0 34px; padding:clamp(18px,3vw,30px); background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,var(--violet),var(--cyan),var(--yellow),var(--red)) border-box; border:3px solid transparent; border-radius:8px; box-shadow:12px 14px 0 rgba(21,21,21,.12); overflow:hidden; }
+    .speech-intro::before { content:""; position:absolute; right:-38px; top:-38px; width:140px; height:140px; background:radial-gradient(circle,rgba(255,210,31,.46),transparent 68%); pointer-events:none; }
+    .speech-intro h2, .speech-intro h3 { animation:none; }
+    .speech-intro h2:first-child { margin-top:0; }
+    .speech-intro ul, .speech-intro ol { max-width:900px; margin:12px 0 20px; padding:18px 22px 18px 42px; background:#fffdf6; border:2px solid rgba(0,0,0,.12); border-radius:8px; box-shadow:none; }
+    .speech-intro li { margin:8px 0; font-size:clamp(16px,1.7vw,20px); }
     main { position:relative; padding:clamp(18px,3vw,36px); background:linear-gradient(#fffdf6,#fffdf6) padding-box,linear-gradient(135deg,var(--cyan),var(--yellow),var(--red),var(--violet)) border-box; border:4px solid transparent; border-radius:8px; box-shadow:0 18px 45px rgba(0,0,0,.15); animation:mainIn 700ms 180ms ease both; }
     main::before { content:""; position:sticky; top:0; display:block; height:6px; margin:calc(clamp(18px,3vw,36px) * -1) calc(clamp(18px,3vw,36px) * -1) 26px; background:linear-gradient(90deg,var(--cyan),var(--green),var(--yellow),var(--red),var(--violet)); background-size:240% 100%; border-radius:4px 4px 0 0; animation:stripe 5s linear infinite; z-index:2; }
     h2 { position:relative; margin:34px 0 18px; padding:10px 16px 10px 48px; display:inline-block; background:var(--ink); color:var(--white); border-radius:4px; font-size:clamp(26px,4vw,42px); line-height:1.1; box-shadow:7px 7px 0 var(--yellow); animation:slideUp linear both; animation-timeline:view(); animation-range:entry 0% cover 30%; }
@@ -68,6 +75,36 @@
       <a class="download-conspect" href="Урок%202.docx" download>Скачать полный конспект</a>
     </header>
     <main>
+      <section class="speech-intro">
+        <h2>Вступление ко второму уроку</h2>
+        <p>Добрый день, ребята!</p>
+        <p>На прошлом занятии мы подготовили все необходимые элементы для нашего проекта: создали блок для рамки портала, предмет для его активации и разработали текстуры, которые будут использоваться в дальнейшем.</p>
+        <p>Сегодня мы переходим к самому интересному этапу — созданию собственного портала.</p>
+        <p>На этом уроке вам предстоит собрать все подготовленные элементы вместе и превратить их в полноценственную игровую механику. Мы будем создавать портал, настраивать его свойства и определять, как именно он будет работать в игре.</p>
+        <p>Подумайте, что делает ваш портал особенным. Возможно, он переносит игрока в другое измерение, открывает проход в секретную локацию или служит входом в загадочный мир. Сегодня у вас будет возможность настроить его так, как вы сами задумали.</p>
+        <h3>План работы на уроке</h3>
+        <p>Сегодня мы:</p>
+        <ol>
+          <li>Создадим собственный портал в MCreator.</li>
+          <li>Настроим его внешний вид.</li>
+          <li>Настроим его основные параметры и поведение.</li>
+          <li>Проверим работу портала в игре.</li>
+          <li>При необходимости исправим ошибки и доработаем настройки.</li>
+        </ol>
+        <p>После того как портал будет готов и протестирован, мы перейдём к дополнительной творческой части проекта.</p>
+        <p>Как и в прошлом модуле, вы сможете создать собственный комплект брони. Однако сегодня мы немного изменим подход к работе с текстурами.</p>
+        <p>Вместо того чтобы рисовать текстуры с нуля, вы сможете выбрать понравившиеся варианты из сообщества готовых текстур. Это позволит вам сосредоточиться на создании интересного дизайна и быстрее добавить броню в свой проект.</p>
+        <p>При выборе текстур старайтесь подбирать такие варианты, которые подходят к тематике вашего портала. Например, если портал связан с магией, можно выбрать мистические текстуры. Если портал ведёт в технологичный мир — подобрать более футуристичный стиль.</p>
+        <h3>Итог урока</h3>
+        <p>К концу занятия у вас должен получиться:</p>
+        <ul>
+          <li>полностью работающий портал;</li>
+          <li>настроенная механика его активации;</li>
+          <li>протестированная работа в игре;</li>
+          <li>собственный комплект брони с выбранными текстурами (если успеем перейти к дополнительной части).</li>
+        </ul>
+        <p>Сегодняшний урок — это момент, когда ваши идеи начинают превращаться в полноценственную модификацию. Поэтому внимательно работаем с настройками, тестируем результаты и стараемся сделать проект максимально интересным и уникальным.</p>
+      </section>
       <h2>Теория</h2>
       <h3>Интересные факты про Minecraft и моды</h3>
       <p>— Minecraft создал всего один человек — программист Маркус Перссон, которого игроки знают под ником Notch. Первую версию игры он сделал всего за несколько дней.</p>
